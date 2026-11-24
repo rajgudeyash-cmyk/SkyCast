@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}SkyCast - Smart Weather Forecast{% endblock %}</title>
+  <meta name="description" content="SkyCast: live weather, hourly and 7-day forecasts for any city in the world.">
+  <meta name="theme-color" content="#0a1a3a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="SkyCast">
+  <link rel="manifest" href="{{ url_for('manifest') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon-192.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/icon-192.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=app_version) }}">
+  <script src="{{ url_for('static', filename='js/script.js', v=app_version) }}"></script>
+</head>
+<body data-page="{% block page %}{% endblock %}">
+  {% set ep = request.endpoint %}
+  <div class="fx" id="fx" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="SkyCast home">
+        <span class="brand-mark" data-wicon="partly-day"></span>
+        <span class="brand-name">Sky<b>Cast</b></span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Main">
+        <a href="{{ url_for('index') }}" {% if ep == 'index' %}aria-current="page"{% endif %}>Home</a>
+        <a href="{{ url_for('favorites') }}" {% if ep == 'favorites' %}aria-current="page"{% endif %}>Favorites</a>
+        <a href="{{ url_for('about') }}" {% if ep == 'about' %}aria-current="page"{% endif %}>About</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="seg" id="btn-units" type="button" aria-label="Switch between Celsius and Fahrenheit">
+          <span class="u-c">&deg;C</span><span class="u-f">&deg;F</span>
+        </button>
+        <button class="icon-btn" id="btn-theme" type="button" aria-label="Switch light or dark theme">
+          <i data-icon="theme"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+      Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo.com</a>
+      &middot; CC BY 4.0
+    </footer>
+  </main>
+
+  <nav class="tabbar" aria-label="Main">
+    <a href="{{ url_for('index') }}" {% if ep == 'index' %}aria-current="page"{% endif %}><i data-icon="home"></i><span>Home</span></a>
+    <a href="{{ url_for('favorites') }}" {% if ep == 'favorites' %}aria-current="page"{% endif %}><i data-icon="star"></i><span>Favorites</span></a>
+    <a href="{{ url_for('about') }}" {% if ep == 'about' %}aria-current="page"{% endif %}><i data-icon="info"></i><span>About</span></a>
+  </nav>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}About - SkyCast{% endblock %}
+{% block page %}about{% endblock %}
+
+{% block content %}
+<section class="page-head about-head">
+  <div class="about-logo" data-wicon="partly-day"></div>
+  <h1>SkyCast</h1>
+  <p class="muted">Smart weather forecasts for any city in the world &middot; Version {{ app_version }}</p>
+  <button class="btn btn-primary" type="button" id="btn-install" hidden><i data-icon="download"></i><span>Install SkyCast</span></button>
+</section>
+
+<div class="about-grid">
+  <section class="card glass">
+    <h2 class="card-title">What you get</h2>
+    <ul class="check-list">
+      <li>Live conditions: temperature, feels-like, humidity, wind, pressure, clouds, rain, UV, sunrise and sunset</li>
+      <li>Hourly forecast for the next 24 hours</li>
+      <li>7-day forecast with highs, lows and UV index</li>
+      <li>Search any city worldwide, or use your current location</li>
+      <li>Favorite cities and recent searches</li>
+      <li>&deg;C / &deg;F switch and light / dark themes</li>
+      <li>Installs on your home screen and opens like a native app</li>
+    </ul>
+  </section>
+
+  <section class="card glass">
+    <h2 class="card-title">Where the data comes from</h2>
+    <p>
+      All weather data and city lookups come from
+      <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo.com</a>,
+      a free weather API, used under the
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> licence.
+      SkyCast never makes up weather: if the service can't be reached, you'll see an error or clearly labelled saved data.
+    </p>
+    <p class="muted">Open-Meteo's free service is for non-commercial use.</p>
+  </section>
+
+  <section class="card glass">
+    <h2 class="card-title">Add to your home screen</h2>
+    <ol class="steps">
+      <li>Open SkyCast in Chrome on your Android phone.</li>
+      <li>Tap the <b>&#8942;</b> menu (top right).</li>
+      <li>Tap <b>Install app</b> or <b>Add to Home screen</b>.</li>
+      <li>Confirm. The SkyCast icon now appears with your other apps.</li>
+    </ol>
+  </section>
+
+  <section class="card glass">
+    <h2 class="card-title">Privacy</h2>
+    <p>
+      Your theme, units, favorites and recent searches are saved only on this device (browser storage).
+      Your location is used only when you tap the location button, and only to ask Open-Meteo for the weather there.
+      SkyCast has no accounts and no ads.
+    </p>
+  </section>
+
+  <section class="card glass">
+    <h2 class="card-title">Built with</h2>
+    <p class="chips-static">
+      <span class="chip static">Python</span><span class="chip static">Flask</span>
+      <span class="chip static">HTML5</span><span class="chip static">CSS3</span>
+      <span class="chip static">JavaScript</span><span class="chip static">PWA</span>
+      <span class="chip static">Open-Meteo</span>
+    </p>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block page %}home{% endblock %}
+
+{% block content %}
+<section class="search-wrap" aria-label="City search">
+  <form id="search-form" class="search glass" role="search" autocomplete="off">
+    <span class="search-ico"><i data-icon="search"></i></span>
+    <input id="search-input" type="search" name="q" placeholder="Search any city"
+           maxlength="80" autocomplete="off" autocapitalize="words" spellcheck="false" enterkeyhint="search"
+           aria-label="Search for a city" aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false">
+    <button type="button" class="icon-btn" id="btn-locate" aria-label="Use my current location" title="Use my current location">
+      <i data-icon="locate"></i>
+    </button>
+    <button type="submit" class="btn btn-primary" id="btn-search">
+      <i data-icon="search"></i><span class="btn-label">Search</span>
+    </button>
+  </form>
+  <ul id="suggestions" class="suggestions glass" role="listbox" hidden></ul>
+  <div id="recent" class="recent" hidden>
+    <span class="recent-title">Recent</span>
+    <div class="chips" id="recent-chips"></div>
+  </div>
+</section>
+
+<section id="state-welcome" class="state glass welcome" hidden>
+  <div class="state-icon" data-wicon="partly-day"></div>
+  <h1>Welcome to SkyCast</h1>
+  <p>Search for a city above, or tap the button below to see the live weather where you are right now.</p>
+  <button class="btn btn-primary" type="button" id="btn-locate-welcome"><i data-icon="locate"></i><span>Use my location</span></button>
+</section>
+
+<section id="state-loading" class="state-loading" aria-label="Loading weather" hidden>
+  <div class="skeleton sk-hero"></div>
+  <div class="skeleton sk-row"></div>
+  <div class="skeleton sk-row"></div>
+  <p class="loading-text"><span class="spinner" aria-hidden="true"></span> Fetching live weather&hellip;</p>
+</section>
+
+<section id="state-error" class="state glass" role="alert" hidden>
+  <div class="state-icon" data-wicon="cloudy"></div>
+  <h2>We couldn't load the weather</h2>
+  <p id="error-message">Something went wrong.</p>
+  <div class="state-actions">
+    <button class="btn btn-primary" type="button" id="btn-retry"><i data-icon="refresh"></i><span>Try again</span></button>
+    <button class="btn btn-ghost" type="button" id="btn-focus-search"><i data-icon="search"></i><span>Search another city</span></button>
+  </div>
+</section>
+
+<div id="dashboard" class="dash" hidden>
+  <div id="notice" class="notice" role="status" hidden></div>
+
+  <section class="hero glass" id="hero" aria-label="Current weather">
+    <div class="hero-top">
+      <div class="hero-place">
+        <h1 id="hero-city">&ndash;</h1>
+        <p id="hero-region" class="muted"></p>
+      </div>
+      <div class="hero-buttons">
+        <button class="icon-btn" id="btn-fav" type="button" aria-pressed="false" aria-label="Add to favorites" title="Add to favorites">
+          <i data-icon="star"></i>
+        </button>
+        <button class="icon-btn" id="btn-refresh" type="button" aria-label="Refresh weather" title="Refresh">
+          <i data-icon="refresh"></i>
+        </button>
+      </div>
+    </div>
+
+    <p class="hero-clock"><i data-icon="clock"></i><span id="hero-date"></span> &middot; <strong id="hero-time"></strong></p>
+
+    <div class="hero-main">
+      <div class="hero-temp">
+        <div class="temp-line"><span id="hero-temp">--</span><sup id="hero-unit">&deg;C</sup></div>
+        <p class="hero-cond" id="hero-cond">&ndash;</p>
+        <p class="muted" id="hero-feels"></p>
+        <p class="hero-hl">
+          <span><i data-icon="arrow-up"></i> High <b id="hero-high">--</b></span>
+          <span><i data-icon="arrow-down"></i> Low <b id="hero-low">--</b></span>
+        </p>
+      </div>
+      <div class="hero-icon" id="hero-icon" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="card glass area-cond" aria-labelledby="h-cond">
+    <h2 id="h-cond" class="card-title">Current conditions</h2>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="card glass area-hourly" aria-labelledby="h-hourly">
+    <h2 id="h-hourly" class="card-title">Next 24 hours</h2>
+    <ul class="hourly" id="hourly"></ul>
+  </section>
+
+  <section class="card glass area-daily" aria-labelledby="h-daily">
+    <h2 id="h-daily" class="card-title">7-day forecast</h2>
+    <ul class="daily" id="daily"></ul>
+  </section>
+
+  <p class="updated" id="updated"></p>
+</div>
+{% endblock %}

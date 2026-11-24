@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Favorites - SkyCast{% endblock %}
+{% block page %}favorites{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <h1>Favorite cities</h1>
+  <p class="muted">Tap a city to open its full forecast. Add cities with the star on the home screen.</p>
+</section>
+
+<div id="fav-empty" class="state glass" hidden>
+  <div class="state-icon" data-wicon="clear-day"></div>
+  <h2>No favorites yet</h2>
+  <p>Search for a city on the home screen and tap the star to save it here.</p>
+  <a class="btn btn-primary" href="{{ url_for('index') }}"><i data-icon="search"></i><span>Find a city</span></a>
+</div>
+
+<ul id="fav-list" class="fav-grid" hidden></ul>
+{% endblock %}

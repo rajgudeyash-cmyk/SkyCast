@@ -1,0 +1,11 @@
+# Render Blueprint - lets you deploy SkyCast with: New + > Blueprint > pick your GitHub repo.
+services:
+  - type: web
+    name: skycast
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # One worker with several threads keeps the in-memory cache and rate limiter shared.
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 30 --bind 0.0.0.0:$PORT
+    healthCheckPath: /healthz
+    autoDeploy: true
